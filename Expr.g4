@@ -1,27 +1,17 @@
 grammar Expr;
 
- 
+// Definición de reglas
+expr:
+	expr op = ('*' | '/') expr		# MulDiv
+	| expr op = ('+' | '-') expr	# SumRes
+	| ENT							# Ent
+	| '(' expr ')'					# Paren;
 
-//LC (sintactico)
-
-expr:   expr op=('*'|'/') expr       #MulDiv
-    |   expr op=('+'|'-') expr           #SumRes
-    |   ENT                                             #Ent
-    |   '(' expr ')'                   #Paren
-    ;
-
- 
-
-//LR (lexico)
-
+// Definición de tokens
 Mul: '*';
-
 Div: '/';
-
 Sum: '+';
-
 Res: '-';
+NEWLINE: [\r\n]+ -> skip;
+ENT: [0-9]+;
 
-NEWLINE : [ \t\r\n]+ -> skip;
-
-ENT     : [0-9]+ ;

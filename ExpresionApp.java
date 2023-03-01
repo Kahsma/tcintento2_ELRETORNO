@@ -1,70 +1,34 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import org.antlr.v4.runtime.*;
-
 import org.antlr.v4.runtime.tree.*;
+import java.io.*;
 
-public class ExpresionApp
-
-{
-
+public class ExpresionApp {
     public static void main(String[] args) throws IOException {
+        // Leer entrada desde un archivo
+        CharStream inputStream = CharStreams.fromFileName("expresiones.txt");
 
-        // 1. Lee entrada crea un flujo de caracteres
-
-        BufferedReader in =
-
-                new BufferedReader(new InputStreamReader(System.in));
-
-        CharStream inputStream = CharStreams.fromReader(in);
-
-        // 2. Hace el analisis lexico del flujo y revisa errores
-
-        // System.out.println("Analisis Lexico: ");
-
+        // Hacer el análisis léxico del flujo y revisar errores
         ExprLexer lexer = new ExprLexer(inputStream);
-
         lexer.addErrorListener(new BaseErrorListener() {
-
             @Override
-
-            public void syntaxError(Recognizer<?, ?> r, Object o, int l, int c,
-
+            public void syntaxError(Recognizer<?, ?> r, Object o, int line, int charPositionInLine,
                     String msg, RecognitionException e) {
-
                 throw new RuntimeException(e);
-
             }
-
         });
-
         CommonTokenStream commonTokenStream = new CommonTokenStream(lexer);
 
-        // 3. analiza (parsea) el flujo de tokens generado por el lexer
-
+        // Analizar (parsear) el flujo de tokens generado por el lexer
         ExprParser parser = new ExprParser(commonTokenStream);
-
-        // System.out.println("Analisis Sintactico: ");
-
         parser.setErrorHandler(new BailErrorStrategy());
-
         ParseTree tree = parser.expr();
 
-        // System.out.println("Crea Arbol: ");
-
-        // 4. Evalua el arbol generado
-
+        // Evaluar el árbol generado
         EvalExprVisitor evaluator = new EvalExprVisitor();
-
         Integer result = evaluator.visit(tree);
 
-        // 5. imprime el resultado
-
+        // Imprimir el resultado
         System.out.print("El resultado es: ");
-
         System.out.println(result);
-
     }
-
 }
