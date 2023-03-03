@@ -1,5 +1,4 @@
 import org.antlr.v4.runtime.misc.ParseCancellationException;
-import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class EvalExprVisitor extends ExprBaseVisitor<Integer> {
     @Override
