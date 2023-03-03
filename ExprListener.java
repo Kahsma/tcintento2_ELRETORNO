@@ -7,6 +7,52 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface ExprListener extends ParseTreeListener {
 	/**
+	 * Enter a parse tree produced by {@link ExprParser#prog}.
+	 * @param ctx the parse tree
+	 */
+	void enterProg(ExprParser.ProgContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ExprParser#prog}.
+	 * @param ctx the parse tree
+	 */
+	void exitProg(ExprParser.ProgContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code imprimir}
+	 * labeled alternative in {@link ExprParser#stat}.
+	 * @param ctx the parse tree
+	 */
+	void enterImprimir(ExprParser.ImprimirContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code imprimir}
+	 * labeled alternative in {@link ExprParser#stat}.
+	 * @param ctx the parse tree
+	 */
+	void exitImprimir(ExprParser.ImprimirContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code asignar}
+	 * labeled alternative in {@link ExprParser#stat}.
+	 * @param ctx the parse tree
+	 */
+	void enterAsignar(ExprParser.AsignarContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code asignar}
+	 * labeled alternative in {@link ExprParser#stat}.
+	 * @param ctx the parse tree
+	 */
+	void exitAsignar(ExprParser.AsignarContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code blanco}
+	 * labeled alternative in {@link ExprParser#stat}.
+	 * @param ctx the parse tree
+	 */
+	void enterBlanco(ExprParser.BlancoContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code blanco}
+	 * labeled alternative in {@link ExprParser#stat}.
+	 * @param ctx the parse tree
+	 */
+	void exitBlanco(ExprParser.BlancoContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code SumRes}
 	 * labeled alternative in {@link ExprParser#expr}.
 	 * @param ctx the parse tree
